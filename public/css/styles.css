@@ -1,0 +1,148 @@
+body {
+  /* sets up for the footer to stick to the bottom */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  background-color: #F1F7F8;
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+menu {
+  display: flex;
+  text-align: center;
+  list-style: none;
+  padding: 20px 0;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: #deecef;
+}
+
+.nav-item {
+  font-size: 1.25rem;
+  padding: 0 30px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #1B3236;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  color: #5CA1AD;
+}
+
+.page-content {
+  flex: 1 0 auto;
+  width: 100%;
+  /* background-image: url("../photos/skyPhoto");
+  background-position: top; */
+}
+
+h1, h2 {
+  text-align: center;
+  color: #1B3236;
+  font-weight: 500;
+}
+
+.hero-container {
+  display: block;
+  padding-top: 15px;
+  /* background-color: #F1F7F8; */
+}
+
+.main-h1 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+  font-size: 4.5rem;
+}
+
+.description {
+  text-align: center;
+  font-size: 1rem;
+  margin: auto;
+  width: 75%;
+  background-color: #F1F7F8;
+}
+
+
+.iqAir {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+  padding: 25px;
+  background-color: #CADEE2;
+  margin: 0 400px;
+  border-radius: 40px 10px;
+}
+
+.request-your-city {
+  text-align: center;
+  padding-top: 25px;
+  font-size: 1rem;
+}
+
+.city-input {
+  border-style: solid;
+  font-size: 1rem;
+  border-color: #5CA1AD;
+}
+
+.submit-button {
+  color: white;
+  font-size: .8rem;
+  border-style: none;
+  border-radius: 15%;
+  width: 4%;
+  background-color: #5CA1AD;
+
+}
+
+.submit-button:hover {
+  box-shadow: 0 5px 16px 0 rgba(0,0,0,0.24), 0 6px 25px 0 rgba(0,0,0,0.19);
+  cursor: pointer;
+}
+
+/* Contact Page */
+
+.contact-email {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.contact-div {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.contact-text {
+    color: #5CA1AD;
+}
+.contact-h1{
+    font-size: 3rem;
+}
+
+.contact-email {
+  text-decoration: underline;
+   color: #4a818a;
+}
+
+
+
+.footer {
+  /* margin-top: auto here is the key to getting the footer to stick to the bottom */
+  margin-top: auto;
+  padding: 20px;
+  flex-shrink: 0;
+  text-align: center;
+  color: white;
+  background-color: #5CA1AD;
+}

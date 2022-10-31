@@ -1,0 +1,32 @@
+<%- include("partials/header") -%>
+
+<section class="page-content">
+  <div class="background-image">
+
+  </div>
+  <div class="hero-container">
+    <h1 class="main-h1">Denver Air Quality Monitor</h1>
+    <h2 class="main-h2">This site uses data from the IQAir API to monitor air quality in Denver, Colorado.</h2>
+  </div>
+  <div class="description">
+    <p>Once air quality exceeds an AQI of 100 or higher an alert is triggered and an email is automatically sent to the governor's office. To remind them of their duty to ensure clean air for Colorado Residents. This site will also serve as a hub for resources related to air quality standards within Colorado and the USA.</p>
+  </div>
+  <div class="iqAir">
+    <h2>Current Conditions</h2>
+    <div class="iqAir-widget" name="airvisual_widget" key="635c984387bcb4e85a0c154b"></div>
+    <script type="text/javascript" src="https://widget.iqair.com/script/widget_v3.0.js"></script>
+  </div>
+  <div class="request-your-city">
+    <h3>Want to see a similar site for your city?</h3>
+    <p>Enter your city below to request an air quality monitor be set up</p>
+    <form class="city-submit" action="/" method="post">
+      <input class="city-input" type="text" name="cityInput" placeholder="Your city...">
+      <button class="submit-button" type="submit" name="city-button">Submit</button>
+    </form>
+  </div>
+</section>
+</body>
+
+</html>
+
+<%- include("partials/footer") -%>
