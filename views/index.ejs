@@ -6,15 +6,46 @@
   </div>
   <div class="hero-container">
     <h1 class="main-h1">Denver Air Quality Monitor</h1>
-    <h2 class="main-h2">This site uses data from the IQAir API to monitor air quality in Denver, Colorado.</h2>
+    <h2 class="main-h2">This site uses data from Open Weather and IQAir to monitor air quality in Denver, Colorado.</h2>
   </div>
   <div class="description">
-    <p>Once air quality exceeds an AQI of 100 or higher an alert is triggered and an email is automatically sent to the governor's office. To remind them of their duty to ensure clean air for Colorado Residents. This site will also serve as a hub for resources related to air quality standards within Colorado and the USA.</p>
+    <p> When this website is opened it automatically checks the current AQI for Denver, CO.
+      If the AQI exceeds a score of 100, an email is sent to the governor and to CO state representatives.
+      This emails functions as an alert to show that Colorado residents are currently breathing air that is considered harmful to all ages,
+      and provides resources and steps by which these elected officials can help.
+      This site will also serve as a hub for resources related to air quality standards within Colorado and the USA.</p>
   </div>
   <div class="iqAir">
     <h2>Current Conditions</h2>
-    <div class="iqAir-widget" name="airvisual_widget" key="635c984387bcb4e85a0c154b"></div>
+    <div class="iqAir-widget" name="airvisual_widget" key="<%= iqAirWidgetKey %>"></div>
     <script type="text/javascript" src="https://widget.iqair.com/script/widget_v3.0.js"></script>
+    <div class="openWeather">
+      <h3>Pollution levels: </h3>
+      <p>Concentration in μg/m3</p>
+      <table>
+        <tr>
+          <th>Carbon Monoxide (CO)</th>
+          <th>Nitrogen Monoxide (NO)</th>
+          <th>Nitrogen Dioxide (NO2)</th>
+          <th>Ozone (O3)</th>
+          <th>Sulphur Dioxide (SO2)</th>
+          <th>Ammonia (NH3)</th>
+          <th>Particulates (PM 2.5)</th>
+          <th>Particulates (PM 10)</th>
+        </tr>
+        <tr>
+          <td><%= co %></td>
+          <td><%= no %></td>
+          <td><%= no2 %></td>
+          <td><%= o3 %></td>
+          <td><%= so2 %></td>
+          <td><%= nh3 %></td>
+          <td><%= pm25 %></td>
+          <td><%= pm10 %></td>
+        </tr>
+      </table>
+      <p>Levels provided by <a href="https://openweathermap.org/">OpenWeather</a></p>
+    </div>
   </div>
   <div class="request-your-city">
     <h3>Want to see a similar site for your city?</h3>

@@ -50,7 +50,6 @@ h1, h2 {
 
 .hero-container {
   display: block;
-  padding-top: 15px;
   /* background-color: #F1F7F8; */
 }
 
@@ -61,7 +60,6 @@ h1, h2 {
 }
 
 .description {
-  text-align: center;
   font-size: 1rem;
   margin: auto;
   width: 75%;
