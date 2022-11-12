@@ -4,8 +4,6 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 const request = require("request");
-
-
 require("dotenv").config();
 
 //variables linked to dotenv file
@@ -33,7 +31,7 @@ let transporter = nodemailer.createTransport({
   }
 });
 
-let sendEmails = function(){
+let sendEmails = function() {
   let mailList = [
     "wompratbass@gmail.com",
     "denvairQualityMonitor@proton.me",
@@ -47,7 +45,7 @@ let sendEmails = function(){
   }
 
 
-  transporter.sendMail(options, function (err, info) {
+  transporter.sendMail(options, function(err, info) {
     if (err) {
       console.log(err);
       return;
@@ -60,8 +58,7 @@ let sendEmails = function(){
 let options = {
   method: "GET",
   url: `http://api.airvisual.com/v2/city?city=Denver&state=Colorado&country=USA&key=${apiKey}`,
-  headers: {
-  },
+  headers: {},
 };
 
 //api request to IQAir Air Visual API
@@ -76,7 +73,7 @@ request(options, function(err, response) {
   //log AQIUS
   console.log(aqius);
   //if aqius exceeds threshold, trigger the sendEmails() function, which carries out sending the emails using nodemailer to all recipients
-  if (aqius > 100){
+  if (aqius > 100) {
     sendEmails();
     console.log(`Emails sent! AQI is above the threshold, currently at ${aqius}`)
   } else {
@@ -89,9 +86,17 @@ let openWeatherOptions = {
   url: `http://api.openweathermap.org/data/2.5/air_pollution?lat=39.742043&lon=-104.991531&appid=${openWeatherAPI}`
 }
 
+request(openWeatherOptions, function(err, response) {
+  if (err) throw new Error(err);
+  let openWeatherData = JSON.parse(response.body);
+  let pollutants = openWeatherData.list[0].components;
+  pollutantData = Object.values(pollutants);
+  getPollutantData(pollutantData);
+});
+
 let pollutantData;
 
-let getPollutantData = function(pollutantData){
+let getPollutantData = function(pollutantData) {
   app.get("/", function(req, res) {
     res.render("index", {
       iqAirWidgetKey: iqAirWidget,
@@ -107,24 +112,6 @@ let getPollutantData = function(pollutantData){
   });
 }
 
-
-request(openWeatherOptions, function(err, response){
-  if(err) throw new Error(err);
-  let openWeatherData = JSON.parse(response.body);
-  let pollutants = openWeatherData.list[0].components;
-  pollutantData = Object.values(pollutants);
-  getPollutantData(pollutantData);
-});
-
-
-
-
-
-
-
-
-
-
 mongoose.connect("mongodb://localhost:27017/citiesDB", {
   useNewURLParser: true
 });
@@ -139,14 +126,40 @@ const City = mongoose.model("city", citiesSchema);
 
 app.post("/", function(req, res) {
   const userCity = req.body.cityInput;
+  if (userCity != "") {
+    const city = new City({
+      city: userCity
+    });
 
-  const city = new City({
-    city: userCity
-  });
-  city.save();
-  console.log(userCity);
-  res.redirect("/");
+    city.save();
+    console.log(userCity);
+    res.redirect("/");
+  }
 });
+
+// const modal = document.querySelector(".modal");
+// const trigger = document.querySelector(".trigger");
+// const closeButton = document.querySelector(".close-button");
+//
+// function toggleModal() {
+//     modal.classList.toggle("show-modal");
+// }
+//
+// function windowOnClick(event) {
+//     if (event.target === modal) {
+//         toggleModal();
+//     }
+// }
+//
+// trigger.addEventListener("click", toggleModal);
+// closeButton.addEventListener("click", toggleModal);
+// window.addEventListener("click", windowOnClick);
+
+
+
+
+
+
 
 app.get("/contact", function(req, res) {
   res.render("contact")

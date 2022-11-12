@@ -20,31 +20,50 @@
     <div class="iqAir-widget" name="airvisual_widget" key="<%= iqAirWidgetKey %>"></div>
     <script type="text/javascript" src="https://widget.iqair.com/script/widget_v3.0.js"></script>
     <div class="openWeather">
-      <h3>Pollution levels: </h3>
-      <p>Concentration in μg/m3</p>
-      <table>
-        <tr>
-          <th>Carbon Monoxide (CO)</th>
-          <th>Nitrogen Monoxide (NO)</th>
-          <th>Nitrogen Dioxide (NO2)</th>
-          <th>Ozone (O3)</th>
-          <th>Sulphur Dioxide (SO2)</th>
-          <th>Ammonia (NH3)</th>
-          <th>Particulates (PM 2.5)</th>
-          <th>Particulates (PM 10)</th>
-        </tr>
-        <tr>
-          <td><%= co %></td>
-          <td><%= no %></td>
-          <td><%= no2 %></td>
-          <td><%= o3 %></td>
-          <td><%= so2 %></td>
-          <td><%= nh3 %></td>
-          <td><%= pm25 %></td>
-          <td><%= pm10 %></td>
-        </tr>
+      <!-- <h3 class="pollution-h3">Pollution levels: </h3>
+      <p class="concentration-p">Concentration in μg/m<sup>3</sup></p> -->
+      <table class="pollutant-table">
+        <caption>Atmospheric pollution levels (shown in μg/m<sup>3</sup>): </caption>
+        <tbody>
+          <tr>
+            <th>Carbon Monoxide<br>
+              CO
+            </th>
+            <th>Nitrogen Monoxide<br>
+              NO
+            </th>
+            <th>Nitrogen Dioxide<br>
+              NO<sub>2</sub>
+            </th>
+            <th>Ozone<br>
+              O<sub>3</sub>
+            </th>
+            <th>Sulphur Dioxide<br>
+              SO<sub>2</sub>
+            </th>
+            <th>Ammonia<br>
+              NH<sub>3</sub>
+            </th>
+            <th>Particulates<br>
+              PM<sub>2.5</sub>
+            </th>
+            <th>Particulates<br>
+              PM<sub>10</sub>
+            </th>
+          </tr>
+          <tr>
+            <td><%= co %></td>
+            <td><%= no %></td>
+            <td><%= no2 %></td>
+            <td><%= o3 %></td>
+            <td><%= so2 %></td>
+            <td><%= nh3 %></td>
+            <td><%= pm25 %></td>
+            <td><%= pm10 %></td>
+          </tr>
+        </tbody>
       </table>
-      <p>Levels provided by <a href="https://openweathermap.org/">OpenWeather</a></p>
+      <p class="open-weather-credit">Levels provided by <a href="https://openweathermap.org/">OpenWeather</a></p>
     </div>
   </div>
   <div class="request-your-city">
@@ -53,6 +72,12 @@
     <form class="city-submit" action="/" method="post">
       <input class="city-input" type="text" name="cityInput" placeholder="Your city...">
       <button class="submit-button" type="submit" name="city-button">Submit</button>
+      <div class="modal">
+        <div class="modal-content">
+          <span class="close-button">x</span>
+          <h1>Thank you for your feedback!</h1>
+        </div>
+      </div>
     </form>
   </div>
 </section>
