@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Air Quality Email Alert System</title>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +15,39 @@
     <link rel="stylesheet" href="css/styles.css">
     <!-- Javascript link -->
     <script src="../app.js"></script>
+
+    <!-- Google Places API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8xNamgGORowWHSYW254nTLjhem4CJrQY&libraries=places&callback=initAutocomplete" async defer></script>
+
+    <!-- Google Places Autocomplete script -->
+    <script type="text/javascript">
+    let autocomplete;
+    function initAutocomplete() {
+        autocomplete = new google.maps.places.Autocomplete(
+            document.getElementById("autocomplete"),
+            {
+                types: ["administrative_area_level_3", "locality"],
+                componentRestrictions: {},
+                fields: ["name", "geometry"],
+            }
+        );
+      autocomplete.addListener("place_changed", onPlaceChanged);
+    }
+    function onPlaceChanged(){
+      let place = autocomplete.getPlace();
+      if (!place.geometry) {
+        //user did not select a prediction; reset the input field
+        document.getElementById("autocomplete").placeholder = "Enter a city";
+      } else {
+        //Display details about the valid place
+        document.getElementById("details").innerHTML = place.name;
+        console.log("place.name");
+      }
+    }
+    </script>
+
   </head>
+  
   <body>
     <nav class="menu">
       <menu>

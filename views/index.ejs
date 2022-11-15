@@ -1,9 +1,6 @@
 <%- include("partials/header") -%>
 
 <section class="page-content">
-  <div class="background-image">
-
-  </div>
   <div class="hero-container">
     <h1 class="main-h1">Denver Air Quality Monitor</h1>
     <h2 class="main-h2">This site uses data from Open Weather and IQAir to monitor air quality in Denver, Colorado.</h2>
@@ -66,11 +63,12 @@
       <p class="open-weather-credit">Levels provided by <a href="https://openweathermap.org/">OpenWeather</a></p>
     </div>
   </div>
+  <hr>
   <div class="request-your-city">
     <h3>Want to see a similar site for your city?</h3>
     <p>Enter your city below to request an air quality monitor be set up</p>
     <form class="city-submit" action="/" method="post">
-      <input class="city-input" type="text" name="cityInput" placeholder="Your city...">
+      <input id="autocomplete" class="city-input" type="text" name="cityInput" placeholder="Your city...">
       <button class="submit-button" type="submit" name="city-button">Submit</button>
       <div class="modal">
         <div class="modal-content">
