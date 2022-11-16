@@ -1,11 +1,15 @@
 //App setup section
 const express = require("express");
-const port = 3000;
+const port = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 const request = require("request");
+const session = require("express-session");
+const flash = require("connect-flash");
+//  const cookieParser = require("cookie-parser");
 require("dotenv").config();
+
 
 //environment variables linked to dotenv file, used to hide API keys, usernames + passwords
 const iqAirApiKey = process.env.IQ_AIR_API_KEY;
@@ -14,20 +18,39 @@ const password = process.env.PASS
 const iqAirWidget = process.env.IQAIR_WIDGET;
 const openWeatherAPI = process.env.OPEN_WEATHER_API;
 const placesAPI = process.env.PLACES_API;
-
+const uri = process.env.MONGODB_URI;
 //set up express to create server
 const app = express();
+
+let sessionStore = new session.MemoryStore;
+
+//direct express to use the public folder for CSS and media as well as our middleware
+app.use(express.static("public"));
 
 //set view EJS view engine to select from views folder
 app.set('view engine', 'ejs');
 
-//enable body parser module
+//enable body parser
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-//direct express to use the public folder for CSS and media
-app.use(express.static("public"));
+// app.use(cookieParser('secret'));
+app.use(session({
+    secret: "secretText",
+    saveUninitialized: true,
+    resave: true
+}));
+
+
+app.use(flash());
+
+app.use(function(req, res, next) {
+  res.locals.message = req.flash();
+  next();
+});
+
+
 
 //create transporter via nodemailer for email functionality. This sets up where the email is coming from.
 let transporter = nodemailer.createTransport({
@@ -158,6 +181,17 @@ app.post("/", function(req, res) {
   }
 });
 
+app.post("/", (req, res) => {
+  if(req.body.cityInput = ""){
+    req.session.message = {
+      type: "danger",
+      intro: "No City Entered!",
+      message: "Please enter a city and try again"
+    }
+    console.log("No City entered");
+  }
+  res.redirect("/");
+});
 
 //Express GET route for the contact page
 app.get("/contact", function(req, res) {
