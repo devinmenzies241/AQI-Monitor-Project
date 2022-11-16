@@ -12,7 +12,4 @@
     "nodemailer": "^6.8.0",
     "request": "^2.88.2"
   }
-  "scripts": {
-    "start": "node app.js"
-  }
 }
