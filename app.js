@@ -1,6 +1,6 @@
 //App setup section
 const express = require("express");
-// const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
@@ -199,5 +199,5 @@ app.get("/contact", function(req, res) {
 });
 //Express server listen method for our port (declared at beginning of the file)
 app.listen(process.env.PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+  console.log(`Server started on port ${port}`);
 });
