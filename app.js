@@ -152,7 +152,7 @@ request(openWeatherOptions, function(err, response) {
 
 
 //Set up Mongoose to point to our mongodb cities database
-mongoose.connect("mongodb://localhost:27017/citiesDB", {
+mongoose.connect(MONGODB_URI, {
   useNewURLParser: true
 });
 //create a Mongoose Schema for the cities
