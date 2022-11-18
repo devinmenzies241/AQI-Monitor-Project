@@ -1,4 +1,5 @@
 //App setup section
+require("dotenv").config();
 const express = require("express");
 const port = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
@@ -8,7 +9,6 @@ const request = require("request");
 // const session = require("express-session");
 // const flash = require("connect-flash");
 //  const cookieParser = require("cookie-parser");
-require("dotenv").config();
 
 
 //environment variables linked to dotenv file, used to hide API keys, usernames + passwords
