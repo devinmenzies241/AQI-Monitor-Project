@@ -5,8 +5,8 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 const request = require("request");
-const session = require("express-session");
-const flash = require("connect-flash");
+// const session = require("express-session");
+// const flash = require("connect-flash");
 //  const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
@@ -22,7 +22,7 @@ const uri = process.env.MONGODB_URI;
 //set up express to create server
 const app = express();
 
-let sessionStore = new session.MemoryStore;
+// let sessionStore = new session.MemoryStore;
 
 //direct express to use the public folder for CSS and media as well as our middleware
 app.use(express.static("public"));
@@ -36,19 +36,19 @@ app.use(bodyParser.urlencoded({
 }));
 
 // app.use(cookieParser('secret'));
-app.use(session({
-    secret: "secretText",
-    saveUninitialized: true,
-    resave: true
-}));
-
-
-app.use(flash());
-
-app.use(function(req, res, next) {
-  res.locals.message = req.flash();
-  next();
-});
+// app.use(session({
+//     secret: "secretText",
+//     saveUninitialized: true,
+//     resave: true
+// }));
+//
+//
+// app.use(flash());
+//
+// app.use(function(req, res, next) {
+//   res.locals.message = req.flash();
+//   next();
+// });
 
 
 
@@ -181,17 +181,17 @@ app.post("/", function(req, res) {
   }
 });
 
-app.post("/", (req, res) => {
-  if(req.body.cityInput = ""){
-    req.session.message = {
-      type: "danger",
-      intro: "No City Entered!",
-      message: "Please enter a city and try again"
-    }
-    console.log("No City entered");
-  }
-  res.redirect("/");
-});
+// app.post("/", (req, res) => {
+//   if(req.body.cityInput = ""){
+//     req.session.message = {
+//       type: "danger",
+//       intro: "No City Entered!",
+//       message: "Please enter a city and try again"
+//     }
+//     console.log("No City entered");
+//   }
+//   res.redirect("/");
+// });
 
 //Express GET route for the contact page
 app.get("/contact", function(req, res) {
